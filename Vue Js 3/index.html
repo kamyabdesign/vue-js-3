@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue js Tutorial</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+	<div id="app">
+		<div class="row">
+			<div class="col-md-8 mx-auto">
+				<h1 class="text-center m-5">Course</h1>
+				<hr>
+				<p>{{ course }} <span class="badge badge-danger">{{ isHot }}</span></p>
+				<p>{{ author }}</p>
+				<p>{{ description }}</p>
+				<p>{{ likes }}</p>
+				<p>{{ views }}</p>
+				<hr>
+				<p>
+					Course: <input v-model="course">
+				</p>
+				<p>
+					Author: <input v-model="author">
+				</p>
+				<p>
+					Description: <input v-model="description">
+				</p>
+				<p>
+					likes:
+					<button class="btn btn-success px-5 mr-1" @click='likes++'>+</button>
+					<button class="btn btn-danger px-5 mr-1" @click='likes--'>-</button>
+					<button class="btn btn-warning px-5" @click="clearCourse('Cleared')">Clear</button>
+				</p>
+				<p>
+					Views:
+					<button class="btn btn-success px-4" @click='views++'>views click</button>
+					<button class="btn btn-success px-4" @click='views--'>views click minues</button>
+					<button class="btn btn-success px-4" @click='clearViews("Cleared")'>views click clear</button>
+				</p>
+				<hr>
+				<p>{{ msg }}</p>
+			</div>
+		</div>
+	</div>
+	<script src="js/Vue.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+		const app = Vue.createApp({
+			data() {
+				return {
+					course: "JavaScript",
+					author: "Mehran",
+					description: "I love JavaScripts",
+					likes: 98,
+					views: 50,
+				}
+			},
+			methods: {
+				clearCourse(msga) {
+					this.likes = '';
+					this.course = '';
+					this.description = '';
+					this.author = '';
+				},
+				clearViews() {
+					this.views = '';
+				}
+			},
+			computed: {
+				isHot() {
+					if (this.likes >= 100) {
+						return "(HOT)"
+					}
+				}
+			}
+		}).mount("#app")
+	</script>
+</body>
+
+</html>
